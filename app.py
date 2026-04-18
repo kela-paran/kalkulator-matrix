@@ -8,13 +8,13 @@ from determinant import (
 )
 from inverse import inverse_adjoint_steps, inverse_obe_steps
 
-# Page config
+#--PAGE CONFIG--
 st.set_page_config(
     page_title="Kalkulator Matriks", 
     layout="centered"
 )
 
-# Load CSS dari file eksternal
+#--LOAD CONFIG--
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
@@ -22,11 +22,11 @@ st.title("🧮 Matrix Calculator")
 
 tab1, tab2, tab3 = st.tabs(["📐 Gauss-Jordan", "🔢 Determinan", "🔄 Invers"])
 
-# ==================== TAB 1: GAUSS-JORDAN ====================
+#====================TAB 1: GAUSS JORDAN====================
 with tab1:
     st.markdown("""
     <div class='info-box'>
-        <strong>📐 Gauss-Jordan Elimination</strong><br>
+        <strong>📐 Eliminasi Gauss-Jordan</strong><br>
         Menyelesaikan Sistem Persamaan Linear (SPL) dengan reduksi matriks.
     </div>
     """, unsafe_allow_html=True)
@@ -37,7 +37,7 @@ with tab1:
     with col2:
         m = st.slider("Jumlah Baris", 2, 6, 3, key="gj_rows")
     
-    st.markdown("### Input Matriks Augmented")
+    st.markdown("### Input Matriks: ")
     
     matrix = []
     for i in range(n):
@@ -76,7 +76,7 @@ with tab1:
                         st.write(step["desc"])
                         st.dataframe(pd.DataFrame(step["matrix"].tolist()), use_container_width=True)
 
-# ==================== TAB 2: DETERMINANT ====================
+#====================TAB 2: DETERMINAN====================
 with tab2:
     st.markdown("""
     <div class='info-box'>
@@ -149,7 +149,7 @@ with tab2:
                             if step.get("matrix"):
                                 st.dataframe(pd.DataFrame(step["matrix"]), use_container_width=True)
             
-            else:  # Kofaktor
+            else:  #--KOFAKTOR--
                 result, steps = determinant_cofactor_steps(det_matrix)
                 if isinstance(result, float) and result == int(result):
                     result = int(result)
@@ -162,13 +162,12 @@ with tab2:
                         if step.get("matrix"):
                             st.write(step["matrix"])
 
-# ==================== TAB 3: INVERSE ====================
+#====================TAB 3: INVERS====================
 with tab3:
     st.markdown("""
     <div class='info-box'>
         <strong>🔄 Kalkulator Invers Matriks</strong><br>
-        Metode: Adjoin dan OBE. Matriks harus non-singular (determinan ≠ 0).
-        Support ordo 2x2 sampai 6x6.
+        Metode: Adjoin dan OBE. Matriks harus determinan ≠ 0.
     </div>
     """, unsafe_allow_html=True)
     
@@ -231,7 +230,7 @@ with tab3:
                                         matrix_clean.append(clean_row)
                                     st.dataframe(pd.DataFrame(matrix_clean), use_container_width=True)
             
-            else:  # OBE
+            else:  #--OBE--
                 result, steps, message = inverse_obe_steps(inv_matrix)
                 
                 if result is None:
