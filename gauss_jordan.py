@@ -28,7 +28,7 @@ def gauss_jordan_steps(matrix):
         if pivot == 0:
             return None, [], "Pivot 0 → tidak bisa lanjut"
 
-        # bikin pivot jadi 1
+        #--BUAT PIVOT JADI 1--
         A[i, :] = A[i, :] / pivot
         steps.append({
             "desc": f"Bagi baris {i+1} dengan {pivot}",
@@ -36,7 +36,7 @@ def gauss_jordan_steps(matrix):
             "pivot": (i, i)
         })
 
-        # eliminasi
+        #--ELIMINASI--
         for j in range(rows):
             if i != j:
                 faktor = A[j, i]
