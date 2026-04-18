@@ -20,11 +20,11 @@ def determinant_obe_steps(matrix):
     current = Matrix(A)
     
     for i in range(n):
-        # Find pivot
+        #--CARI PIVOT--
         pivot = current[i, i]
         pivot_row = i
         
-        # If pivot is zero, try to swap
+        #--KALO PIVOT 0, SWAP--
         if pivot == 0:
             for k in range(i + 1, n):
                 if current[k, i] != 0:
@@ -42,7 +42,7 @@ def determinant_obe_steps(matrix):
         if pivot == 0:
             return 0, steps
         
-        # Eliminate rows below
+        #--ELIMINASI BARIS--
         for j in range(i + 1, n):
             if current[j, i] != 0:
                 factor = current[j, i] / current[i, i]
@@ -75,7 +75,7 @@ def determinant_sarrus_steps(matrix):
     n = len(matrix)
     
     if n == 2:
-        # Sarrus for 2x2
+        #--SARRUS 2x2--
         a, b = matrix[0][0], matrix[0][1]
         c, d = matrix[1][0], matrix[1][1]
         
@@ -111,7 +111,7 @@ def determinant_sarrus_steps(matrix):
         return det, steps
     
     else:  # n == 3
-        # Sarrus for 3x3
+        #--SARRUS 3x3--
         a11, a12, a13 = matrix[0][0], matrix[0][1], matrix[0][2]
         a21, a22, a23 = matrix[1][0], matrix[1][1], matrix[1][2]
         a31, a32, a33 = matrix[2][0], matrix[2][1], matrix[2][2]
@@ -122,12 +122,12 @@ def determinant_sarrus_steps(matrix):
             "matrix": matrix
         })
         
-        # Positive diagonals (top-left to bottom-right)
+        #--DIAGONAL POSITIF-- (top-left to bottom-right)
         pos1 = a11 * a22 * a33
         pos2 = a12 * a23 * a31
         pos3 = a13 * a21 * a32
         
-        # Negative diagonals (bottom-left to top-right)
+        #--DIAGONAL MINUS-- (bottom-left to top-right)
         neg1 = a31 * a22 * a13
         neg2 = a32 * a23 * a11
         neg3 = a33 * a21 * a12
@@ -158,7 +158,7 @@ def determinant_cofactor_steps(matrix):
     n = A.shape[0]
     steps = []
     
-    # Step 1: Pilih baris untuk ekspansi
+    #--PILIH BARIS UNTUK EKSPANSI--
     steps.append({
         "title": "Pilih Baris untuk Ekspansi",
         "desc": "Kita akan melakukan ekspansi kofaktor sepanjang **BARIS 1**",
@@ -167,7 +167,7 @@ def determinant_cofactor_steps(matrix):
     
     total = 0
     for j in range(n):
-        # Buat minor dengan menghapus baris 0 dan kolom j
+        #--buat minor dengan menghapus baris 0 dan kolom j
         minor_rows = []
         for r in range(1, n):
             row = []
