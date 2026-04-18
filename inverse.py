@@ -13,7 +13,7 @@ def inverse_adjoint_steps(matrix):
     n = A.shape[0]
     steps = []
     
-    # Calculate determinant
+    #--BUAT ITUNG DETERMINAN--
     det = A.det()
     
     steps.append({
@@ -25,7 +25,7 @@ def inverse_adjoint_steps(matrix):
     if det == 0:
         return None, steps, "❌ Matriks singular (determinan = 0), tidak memiliki invers"
     
-    # Calculate cofactor matrix
+    #--BUAT ITUNG KOFAKTOR--
     steps.append({
         "title": "Langkah 2: Hitung Matriks Kofaktor",
         "desc": "Setiap elemen Cij = (-1)^(i+j) × det(Mij), dimana Mij adalah minor",
@@ -55,7 +55,7 @@ def inverse_adjoint_steps(matrix):
         "matrix": cofactor_matrix
     })
     
-    # Transpose to get adjoint
+    #--TRANSPOSE BUAT KOFAKTOR--
     adjoint = Matrix(cofactor_matrix).T
     
     steps.append({
@@ -64,7 +64,7 @@ def inverse_adjoint_steps(matrix):
         "matrix": adjoint.tolist()
     })
     
-    # Calculate inverse
+    #--HITUNG INVERS--
     inverse = adjoint / det
     
     steps.append({
@@ -86,7 +86,7 @@ def inverse_obe_steps(matrix):
     A = to_rational_matrix(matrix)
     n = A.shape[0]
     
-    # Check determinant
+    #--CEK DETERMINAN--
     det = A.det()
     steps = []
     
@@ -99,7 +99,7 @@ def inverse_obe_steps(matrix):
     if det == 0:
         return None, steps, "❌ Matriks singular (determinan = 0), tidak memiliki invers"
     
-    # Create augmented matrix [A | I]
+    #--BUAT MATRIKS [A | I]--
     I = eye(n)
     augmented = Matrix.hstack(A, I)
     
@@ -111,12 +111,12 @@ def inverse_obe_steps(matrix):
     
     step_counter = 3
     
-    # Gauss-Jordan elimination
+    #--ELIMINASI GJ--
     for i in range(n):
-        # Make pivot 1
+        #--BUAT PIVOT JADI 1
         pivot = augmented[i, i]
         if pivot == 0:
-            # Find row to swap
+            #--CARI BARIS YANG BISA DI SWAP
             for k in range(i + 1, n):
                 if augmented[k, i] != 0:
                     augmented.row_swap(i, k)
@@ -138,7 +138,7 @@ def inverse_obe_steps(matrix):
             })
             step_counter += 1
         
-        # Eliminate other rows
+        #--ELIMIASI BARIS LAIN--
         for j in range(n):
             if i != j and augmented[j, i] != 0:
                 factor = augmented[j, i]
