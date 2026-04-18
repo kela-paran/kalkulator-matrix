@@ -18,7 +18,7 @@ st.set_page_config(
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 
-st.title("🧮 Matrix Calculator")
+st.title("🧮 Kalkulator Matriks")
 
 tab1, tab2, tab3 = st.tabs(["📐 Gauss-Jordan", "🔢 Determinan", "🔄 Invers"])
 
