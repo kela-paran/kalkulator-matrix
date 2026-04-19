@@ -61,11 +61,11 @@ with tab1:
                 
                 st.markdown("### Jenis Solusi")
                 if solusi == "Solusi unik":
-                    st.info("🎯 Solusi tunggal")
+                    st.info("Solusi tunggal")
                 elif solusi == "Solusi tak hingga":
-                    st.warning("♾️ Banyak solusi")
+                    st.warning("Solusi tak hingga")
                 else:
-                    st.error("🚫 Tidak ada solusi")
+                    st.error("Tidak ada solusi")
                 
                 st.markdown("### Hasil Akhir")
                 st.dataframe(pd.DataFrame(hasil.tolist()), use_container_width=True)
